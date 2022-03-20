@@ -5,5 +5,5 @@ function quest7(){
     for (var word=0; word<(string_list.length); word++){
         result+=string_list[word][0].toUpperCase();
     } 
-    console.log(result)
+    console.log(result);
 }
