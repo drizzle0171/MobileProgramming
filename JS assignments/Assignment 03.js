@@ -6,7 +6,13 @@ function operator(n1, operate, n2){
             break;
         case '-':
             answer = n1-n2;
-            break;            
+            break;
+        case '*':
+            answer = n1*n2;
+        case '/':
+            answer = n1/n2;
+        case '%':
+            answer = n1%n2;
     }
     return answer
 }
