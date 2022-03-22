@@ -13,6 +13,8 @@ function operator(n1, operate, n2){
             answer = n1/n2;
         case '%':
             answer = n1%n2;
+        default:
+            answer = '연산자를 입력하세요.';
     }
     return answer
 }
