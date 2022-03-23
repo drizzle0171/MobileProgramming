@@ -1,0 +1,182 @@
+<script>
+    // 0번 문제
+    function quest0() {
+    var input, min, sec;
+    input = prompt("초 단위 시간을 입력하세요");
+    min = parseInt(input/60);
+    sec = input%60
+    console.log(min + " 분 " + sec + " 초입니다.");
+}   
+
+    // 1번 문제
+    function getDist(x1, y1, x2, y2){
+    return Math.sqrt((x2-x1)**2+(y2-y1)**2);  
+}
+    function quest1(){
+    let x1 = Number(prompt("첫 번째 점의 x좌표를 입력하세요"));
+    let y1 = Number(prompt("첫 번째 점의 y좌표를 입력하세요"));
+    let x2 = Number(prompt("두 번째 점의 x좌표를 입력하세요"));
+    let y2 = Number(prompt("두 번째 점의 y좌표를 입력하세요"));   
+    let first ={
+        x:x1,
+        y:y1
+    }
+    let second ={
+        x:x2,
+        y:y2
+    }
+    console.log("Getting distance using getDist() func");
+    let distance = getDist(first.x, first.y, second.x, second.y);
+    return distance
+}
+
+    // 2번 문제
+    function quest2(string){
+    console.log(string.toUpperCase());
+}
+
+    // 3번 문제
+    function operator(n1, operate, n2){
+    let answer;
+    switch(operate){
+        case '+':
+            answer = n1+n2;
+            break;
+        case '-':
+            answer = n1-n2;
+            break;
+        case '*':
+            answer = n1*n2;
+        case '/':
+            answer = n1/n2;
+        case '%':
+            answer = n1%n2;
+        default:
+            answer = '연산자를 입력하세요.';
+    }
+    return answer
+}
+
+    function quest3(){
+    let num1 = parseInt(prompt("첫 번재 숫자를 입력하세요"));
+    let operate = prompt("연산자를 입력하세요");
+    let num2 = parseInt(prompt("두 번째 숫자를 입력하세요"));
+    answer = operator(num1, operate, num2);
+    console.log(`정답은 ${answer}입니다.`);
+}
+
+    // 4번 문제
+    function quest4(){
+    let computer = (Math.random()*9);
+    if (0<=computer&&computer<3) {
+        computer = '가위';
+    }
+    else if (3<=computer&&computer<6) {
+        computer = '바위';
+    }
+    else if (7<=computer&&computer<10) {
+        computer = '보';
+    }
+    let user = prompt('가위 바위 보!');
+    console.log(`컴퓨터: ${computer}`);
+    
+    let result;
+    if (computer==user){
+        result = '비겼습니다.';
+    }
+    else if (computer=='바위'&&user=='보'){
+        result = '사용자 승리!'
+    }
+    else if (computer=='가위'&&user=='바위'){
+        result = '사용자 승리!'
+    }
+    else if (computer=='보'&&user=='가위'){
+        result = '사용자 승리!'
+    }
+    else {
+        result = '컴퓨터 승리!'
+    }
+
+    console.log(result)
+}
+    // 5번 문제
+    function myReverse(sentence){
+    let result = "";
+    for (let i=sentence.length-1; i>=0; i--){
+        result += sentence[i];
+    }
+    return result;
+}
+
+    function quest5(){  
+    let sentence = String(prompt("문자열을 입력하세요"));
+    console.log(myReverse(sentence));
+}
+    // 6번 문제
+    function quest6(){    
+    while (true) {
+        let input = Number(prompt("숫자를 입력하세요"));
+        if (input<0) {
+            console.log("끝!");
+            break
+        }
+        else if (input%2==0) {
+            continue;
+        }
+        else if (input%2!=0) {
+            console.log(`${input}를 입력하셨네요.`);
+        }
+        }
+}
+
+    // 7번 문제
+    function quest7(){
+    let input = prompt("문자열을 입력해주세요.");
+    let string_list = input.split(' ');  
+    let result="";
+    for (var word=0; word<(string_list.length); word++){
+        result+=string_list[word][0].toUpperCase();
+    } 
+    console.log(result);
+}
+
+    // 8번 문제
+    function quest8(){
+    let input = prompt("문자열을 입력하세요.");
+    let words = input.replace(/,|[.]/gi, " ");
+    let arr = words.split(' ');
+    let new_arr = [...new Set(arr)];;
+    let list = new_arr.sort()
+
+    for (let word=1; word<list.length; word++){
+        console.log(list[word])
+        }
+}
+
+    // 9번 문제
+    function quest9(longStr){
+    let Str = longStr.replace(/ |;|[.]/g, "");
+    let Case = Str.split('');
+    let new_arr= [...new Set(Case)];
+    let cnt_arr = [];
+    let cnt = 0;
+    for (let i=0; i<new_arr.length; i++){
+        for (let j=0; j<Case.length; j++){
+            if (new_arr[i]==Case[j]) {
+                cnt++;
+            }
+        }
+        cnt_arr.push(cnt);
+        cnt = 0;
+    }
+
+    let result = {};
+    for (let k=0; k<cnt_arr.length; k++){
+        result[new_arr[k]] = cnt_arr[k];
+    }
+    for (key in result){
+        console.log(`${key}:${result[key]}`)
+    }
+}
+
+</script>
