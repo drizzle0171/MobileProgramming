@@ -5,84 +5,178 @@
     <title>Document</title>
     <script>
         function quest0() {
-            // 여기에 스크립트를 작성하세요
+            var input, min, sec;
+            input = prompt("초 단위 시간을 입력하세요");
+            min = parseInt(input/60);
+            sec = input%60
+            console.log(`${min} 분 ${sec} 초입니다.`);        
         }
 
         function quest1() {
-            
-            // 여기에 스크립트를 작성하세요            
-
-            let distance = getDist(p1, p2); // 반드시 이 코드를 이용하세요
+            let x1 = Number(prompt("첫 번째 점의 x좌표를 입력하세요"));
+            let y1 = Number(prompt("첫 번째 점의 y좌표를 입력하세요"));
+            let x2 = Number(prompt("두 번째 점의 x좌표를 입력하세요"));
+            let y2 = Number(prompt("두 번째 점의 y좌표를 입력하세요"));   
+            let p1 ={
+                x:x1,
+                y:y1
+                }
+            let p2 ={
+                x:x2,
+                y:y2
+                }
+            console.log("Getting distance using getDist() func");
+            let distance = getDist(p1, p2);
             console.log(distance);
-
         }
 
-        function getDist() { // 입력 인자 설정 필요
-            // 여기에 스크립트를 작성하세요
+        function getDist(p1, p2) { 
+            return Math.sqrt((p2.x-p1.x)**2+(p2.y-p1.y)**2);
         }
 
         function quest2(str) {  
-            
-            // 여기에 스크립트를 작성하세요
+            console.log(str.toUpperCase());
+
         }
 
         function quest3() {
-            // 여기에 스크립트를 작성하세요
-
-            var answer = operate(num1, oper, num2); // 반드시 이 코드를 사용하세요
+            let num1 = parseInt(prompt("첫 번재 숫자를 입력하세요"));
+            let oper = prompt("연산자를 입력하세요");
+            let num2 = parseInt(prompt("두 번째 숫자를 입력하세요"));
+            var answer = operate(num1, oper, num2);
             console.log("정답은 %d입니다.", answer);
         }
 
-        function operate(num1, oper, num2) { // 반드시 이 함수를 이용하여 연산 결과를 계산하세요
-            
-            // 여기에 스크립트를 작성하세요
-            // 단, 반드시 switch 문을 활용하세요
-
+        function operate(num1, oper, num2) { 
+            let answer;
+            switch(oper){
+                case '+':
+                    answer = num1+num2;
+                    break;
+                case '-':
+                    answer = num1-num2;
+                    break;
+                case '*':
+                    answer = num1*num2;
+                case '/':
+                    answer = num1/num2;
+                case '%':
+                    answer = num1%num2;
+                default:
+                    answer = '연산자를 입력하세요.';
+            }
+            return answer
         }
 
         function quest4() {
+            let computer = (Math.random()*9);
+            if (0<=computer&&computer<3) {
+                computer = '가위';
+            }
+            else if (3<=computer&&computer<6) {
+                computer = '바위';
+            }
+            else if (7<=computer&&computer<10) {
+                computer = '보';
+            }
+            let user = prompt('가위 바위 보!');
+            console.log(`컴퓨터: ${computer}`);
+            
+            let result;
+            if (computer==user){
+                result = '비겼습니다.';
+            }
+            else if (computer=='바위'&&user=='보'){
+                result = '사용자 승리!'
+            }
+            else if (computer=='가위'&&user=='바위'){
+                result = '사용자 승리!'
+            }
+            else if (computer=='보'&&user=='가위'){
+                result = '사용자 승리!'
+            }
+            else {
+                result = '컴퓨터 승리!'
+            }
 
-             // 여기에 스크립트를 작성하세요
+            console.log(result)
         }
 
         function quest5() {
-            str = prompt('문자열을 입력하세요') // 반드시 이 코드를 사용하세요
+            str = prompt('문자열을 입력하세요')
             console.log(myReverse(str));
         }
 
         function myReverse(str) {
-            
-            // 여기에 스크립트를 작성하세요
-            // 반드시 반복문을 이용하여 str의 내용을 뒤집으세요
-
+            let result = "";
+            for (let i=str.length-1; i>=0; i--){
+                result += str[i];
+            }
+            return result;
         }
 
         function quest6() {
-            
-            // 여기에 스크립트를 작성하세요
+            while (true) {
+                let input = Number(prompt("숫자를 입력하세요"));
+                if (input<0) {
+                    console.log("끝!");
+                    break
+                }
+                else if (input%2==0) {
+                    continue;
+                }
+                else if (input%2!=0) {
+                    console.log(`${input}를 입력하셨네요.`);
+                }
+                }
         }
 
         function quest7(){
-            
-            // 여기에 스크립트를 작성하세요
-
+            let input = prompt("문자열을 입력해주세요.");
+            let string_list = input.split(' ');  
+            let result="";
+            for (var word=0; word<(string_list.length); word++){
+                result+=string_list[word][0].toUpperCase();
+            } 
+            console.log(result);
         }
 
         let testStr = 'My name is mymy. Your name is youryour. His name is hishis. Her name is herher. So, my, your, his, her, name will be mymyyouryourhishisherehr.';
-        // 위 변수를 이용하여 quest8()함수를 실행하세요
-
         function quest8(str){            
-            // 여기에 스크립트를 작성하세요
-            
+            let words = str.replace(/,|[.]/gi, " ");
+            let arr = words.split(' ');
+            let new_arr = [...new Set(arr)];;
+            let list = new_arr.sort()
+
+            for (let word=1; word<list.length; word++){
+                console.log(list[word])
+                }
         }
 
         let longStr = "Computer engineering has been rapidly changed than any other academic disciplines; these changes are immediately reflected in the industrial field.";
-        // 위 변수를 이용하여 quest9()함수를 실행하세요
-
         function quest9(str){
-            
-            // 여기에 스크립트를 작성하세요    
-                        
+            let Str = longStr.replace(/ |;|[.]/g, "");
+            let Case = Str.split('');
+            let new_arr= [...new Set(Case)];
+            let cnt_arr = [];
+            let cnt = 0;
+            for (let i=0; i<new_arr.length; i++){
+                for (let j=0; j<Case.length; j++){
+                    if (new_arr[i]==Case[j]) {
+                        cnt++;
+                    }
+                }
+                cnt_arr.push(cnt);
+                cnt = 0;
+            }
+
+            let result = {};
+            for (let k=0; k<cnt_arr.length; k++){
+                result[new_arr[k]] = cnt_arr[k];
+            }
+            for (key in result){
+                console.log(`${key}:${result[key]}`)
+            }    
         }
 
     </script>
